@@ -390,6 +390,21 @@
             padding: var(--space-3) 0;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: var(--space-2);
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--color-text-primary);
+            transition: var(--duration-fast);
+        }
+
         .nav-links {
             display: flex;
             gap: var(--space-2);
@@ -477,15 +492,38 @@
         }
 
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--color-bg);
+                flex-direction: column;
+                padding: var(--space-4);
                 gap: var(--space-2);
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: var(--shadow-3);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all var(--duration-base) var(--ease-out);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
 
             .nav-links a {
-                font-size: var(--text-xs);
-                padding: var(--space-2) var(--space-3);
+                width: 100%;
+                justify-content: center;
+                padding: var(--space-3);
+                font-size: var(--text-sm);
             }
 
             .nav-admin-link {
@@ -2027,20 +2065,29 @@
         @media (max-width: 768px) {
             .hero {
                 padding-top: calc(70px + var(--space-10));
+                padding-bottom: var(--space-12);
             }
 
             .hero h1 {
                 text-align: center;
+                font-size: var(--text-3xl);
             }
 
             .hero-description {
                 text-align: center;
                 margin-left: auto;
                 margin-right: auto;
+                font-size: var(--text-base);
             }
 
             .hero-actions {
                 justify-content: center;
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+
+            .hero-actions .btn {
+                width: 100%;
             }
 
             .stats-grid {
@@ -2050,6 +2097,50 @@
 
             .menu-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-3);
+            }
+
+            .gallery-item {
+                aspect-ratio: 1;
+            }
+
+            .gallery-item img {
+                object-fit: cover;
+            }
+
+            .appointment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+            }
+
+            .form-control {
+                font-size: 16px;
+                /* Prevent zoom on iOS */
+            }
+
+            .admin-modal {
+                padding: var(--space-4);
+            }
+
+            .admin-panel {
+                max-height: 95vh;
+            }
+
+            .admin-table {
+                font-size: var(--text-xs);
+            }
+
+            .admin-table th,
+            .admin-table td {
+                padding: var(--space-2);
             }
 
             .reviews-grid {
@@ -2066,6 +2157,10 @@
 
             .appointment-wrapper {
                 padding: var(--space-6);
+            }
+
+            .map-container {
+                min-height: 300px;
             }
         }
 
@@ -2135,13 +2230,18 @@
             <div class="logo">
                 <span class="logo-text">Kumpirim & Waffle</span>
             </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
-                <a href="#kumpir-nedir"><i class="fas fa-info-circle"></i> Kumpir</a>
-                <a href="#menü"><i class="fas fa-book-open"></i> Menü</a>
-                <a href="#nasil-yenir"><i class="fas fa-utensils"></i> Nasıl Yenir?</a>
-                <a href="#yorumlar"><i class="fas fa-star"></i> Yorumlar</a>
-                <a href="#randevu"><i class="fas fa-calendar-check"></i> Randevu</a>
-                <a href="#iletisim"><i class="fas fa-map-marker-alt"></i> İletişim</a>
+                <a href="#kumpir-nedir" onclick="closeMobileMenu()"><i class="fas fa-info-circle"></i> Kumpir</a>
+                <a href="#menü" onclick="closeMobileMenu()"><i class="fas fa-book-open"></i> Menü</a>
+                <a href="#nasil-yenir" onclick="closeMobileMenu()"><i class="fas fa-utensils"></i> Nasıl Yenir?</a>
+                <a href="#yorumlar" onclick="closeMobileMenu()"><i class="fas fa-star"></i> Yorumlar</a>
+                <a href="#randevu" onclick="closeMobileMenu()"><i class="fas fa-calendar-check"></i> Randevu</a>
+                <a href="#iletisim" onclick="closeMobileMenu()"><i class="fas fa-map-marker-alt"></i> İletişim</a>
                 <a href="#" onclick="openAdminPanel(); return false;" class="nav-admin-link">Admin</a>
             </div>
         </div>
@@ -3362,9 +3462,22 @@
         }
 
         // Admin Panel Functions
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('active');
+        }
+
         function openAdminPanel() {
             document.getElementById('adminModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Close mobile menu if open
+            closeMobileMenu();
 
             // Check if already logged in
             const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
