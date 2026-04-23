@@ -1,0 +1,3591 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Nilüfer Bursa'nın en lezzetli kumpircisi. Tereyağlı patates, bol kaşar ve 20'den fazla malzeme seçeneği. Randevu sistemi ile beklemeyin, hemen rezervasyon yapın.">
+    <meta name="keywords"
+        content="kumpir, bursa kumpir, nilüfer kumpir, kumpircim, patates, sokak lezzeti, kumpir sipariş">
+    <meta name="author" content="Kumpircim">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Kumpircim | Nilüfer'in En Lezzetli Kumpircisi">
+    <meta property="og:description"
+        content="Tereyağlı patates, bol kaşar ve 20'den fazla malzeme seçeneği. Hemen randevu alın!">
+    <meta property="og:type" content="restaurant">
+    <meta property="og:url" content="https://kumpircim.com">
+    <meta name="theme-color" content="#E67E22">
+    <title>Kumpircim | Nilüfer'in En Lezzetli Kumpircisi & Randevu</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        /* ============================================
+           KUMPIRIM & WAFFLE - PREMIUM RESTAURANT WEBSITE
+           Design System: Warm Artisanal Theme
+           $10,000 Product Standards
+           ============================================ */
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Primary Palette - Warm Amber */
+            --amber-50: #FFF8F0;
+            --amber-100: #FFECD4;
+            --amber-200: #FFD4A3;
+            --amber-300: #FFB366;
+            --amber-400: #FF9933;
+            --amber-500: #F57F17;
+            --amber-600: #E67E22;
+            --amber-700: #D35400;
+            --amber-800: #A04000;
+            --amber-900: #6B2D00;
+
+            /* Neutral Palette - Rich Browns */
+            --brown-50: #FDF8F3;
+            --brown-100: #F5EBE0;
+            --brown-200: #E8D5C4;
+            --brown-300: #D4B896;
+            --brown-400: #B8906A;
+            --brown-500: #8B5A2B;
+            --brown-600: #6B4423;
+            --brown-700: #4A2C17;
+            --brown-800: #2C1810;
+            --brown-900: #1A0F08;
+
+            /* Semantic Colors */
+            --color-primary: var(--amber-600);
+            --color-primary-dark: var(--amber-700);
+            --color-primary-light: var(--amber-400);
+            --color-bg: var(--amber-50);
+            --color-surface: #FFFFFF;
+            --color-surface-elevated: var(--brown-50);
+            --color-text: var(--brown-800);
+            --color-text-secondary: var(--brown-600);
+            --color-text-muted: var(--brown-400);
+            --color-border: var(--brown-200);
+            --color-error: #DC2626;
+            --color-error-light: #FEE2E2;
+            --color-success: #059669;
+            --color-success-light: #D1FAE5;
+            --color-info: #2563EB;
+            --color-warning: #F59E0B;
+
+            /* Elevation System - Layered Shadows */
+            --shadow-1: 0 1px 2px rgba(44, 24, 16, 0.04), 0 1px 3px rgba(44, 24, 16, 0.08);
+            --shadow-2: 0 4px 6px -1px rgba(44, 24, 16, 0.06), 0 2px 4px -1px rgba(44, 24, 16, 0.04);
+            --shadow-3: 0 10px 15px -3px rgba(44, 24, 16, 0.08), 0 4px 6px -2px rgba(44, 24, 16, 0.04);
+            --shadow-4: 0 20px 25px -5px rgba(44, 24, 16, 0.12), 0 10px 10px -5px rgba(44, 24, 16, 0.04);
+            --shadow-5: 0 25px 50px -12px rgba(44, 24, 16, 0.25);
+            --shadow-glow: 0 0 0 3px rgba(230, 126, 34, 0.15);
+
+            /* Border Radius System */
+            --radius-xs: 6px;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+
+            /* Spacing System */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-20: 80px;
+
+            /* Typography Scale */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+
+            /* Animation System */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --duration-fast: 150ms;
+            --duration-base: 250ms;
+            --duration-slow: 350ms;
+            --duration-slower: 500ms;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: var(--text-base);
+            overflow-x: hidden;
+        }
+
+        /* Typography Hierarchy */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: var(--text-5xl);
+        }
+
+        h2 {
+            font-size: var(--text-4xl);
+        }
+
+        h3 {
+            font-size: var(--text-2xl);
+        }
+
+        h4 {
+            font-size: var(--text-xl);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: var(--text-3xl);
+            }
+
+            h2 {
+                font-size: var(--text-2xl);
+            }
+        }
+
+        /* Container System */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-4);
+            }
+        }
+
+        /* ============================================
+           COMPONENT: Buttons
+           ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--duration-base) var(--ease-spring);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+            opacity: 0;
+            transition: opacity var(--duration-fast);
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: scale(0.98) translateY(1px);
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(230, 126, 34, 0.4);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
+        }
+
+        .btn--secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            box-shadow: var(--shadow-1);
+        }
+
+        .btn--secondary:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-2);
+        }
+
+        .btn--lg {
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--text-base);
+        }
+
+        .btn--block {
+            width: 100%;
+        }
+
+        /* Legacy button classes for backward compatibility */
+        .btn-primary,
+        .btn-outline {
+            padding: 0.9rem 1.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            transition: all var(--duration-base) var(--ease-spring);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(230, 126, 34, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           COMPONENT: Navigation
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 248, 240, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(139, 90, 43, 0.08);
+            transition: all var(--duration-base) var(--ease-out);
+        }
+
+        .navbar--scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-2);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) 0;
+            gap: var(--space-4);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+            transition: transform var(--duration-fast) var(--ease-spring);
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--brown-800);
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--brown-800), var(--color-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            box-shadow: var(--shadow-2);
+            transition: all var(--duration-base) var(--ease-out);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-2);
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            border-radius: var(--radius-full);
+            transition: all var(--duration-fast);
+            position: relative;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            color: var(--color-primary);
+            background: rgba(230, 126, 34, 0.08);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+            transition: transform var(--duration-fast) var(--ease-spring);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a[aria-current="page"]::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-links a i {
+            font-size: var(--text-xs);
+            transition: transform var(--duration-fast);
+        }
+
+        .nav-links a:hover i {
+            transform: translateY(-1px);
+        }
+
+        .nav-admin-link {
+            background: linear-gradient(135deg, #8B4513, #A0522D) !important;
+            color: white !important;
+            border-radius: var(--radius-lg) !important;
+            padding: var(--space-2) var(--space-5) !important;
+            font-weight: 600 !important;
+            display: flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+            border: none !important;
+            position: relative !important;
+        }
+
+        .nav-admin-link:hover {
+            background: linear-gradient(135deg, #6B3410, #8B4513) !important;
+            transform: scale(1.05) !important;
+        }
+
+        /* Navbar Responsive */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: var(--space-1);
+            }
+
+            .nav-links a {
+                padding: var(--space-2) var(--space-3);
+                font-size: var(--text-xs);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-2);
+            }
+
+            .nav-links a {
+                font-size: var(--text-xs);
+                padding: var(--space-2) var(--space-3);
+            }
+
+            .nav-admin-link {
+                width: 100%;
+                justify-content: center !important;
+                margin-top: var(--space-2);
+            }
+        }
+
+        /* ============================================
+           COMPONENT: Hero Section
+           ============================================ */
+        .hero {
+            position: relative;
+            padding: calc(80px + var(--space-16)) 0 var(--space-16);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(230, 126, 34, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--brown-100);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: var(--space-6);
+        }
+
+        .hero h1 {
+            margin-bottom: var(--space-6);
+        }
+
+        .hero h1 span {
+            color: var(--color-primary);
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            max-width: 480px;
+            margin-bottom: var(--space-8);
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-5);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+            transition: transform var(--duration-slow) var(--ease-out);
+        }
+
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-floating-card--1 {
+            bottom: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .hero-floating-card--2 {
+            top: 10%;
+            right: -5%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating-card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--amber-200), var(--amber-300));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--amber-800);
+            font-size: var(--text-lg);
+        }
+
+        .floating-card-text {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--brown-800);
+        }
+
+        .floating-card-subtext {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================
+           COMPONENT: Section Title
+           ============================================ */
+        .section-title {
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-8);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+            margin: var(--space-4) auto 0;
+            border-radius: var(--radius-full);
+        }
+
+        /* ============================================
+           COMPONENT: Info Cards
+           ============================================ */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+
+        .info-card {
+            background: var(--color-surface);
+            padding: var(--space-8);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-2);
+            transition: all var(--duration-base) var(--ease-spring);
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+            transform: scaleX(0);
+            transition: transform var(--duration-base) var(--ease-out);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-4);
+        }
+
+        .info-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .info-card h3 {
+            margin-bottom: var(--space-4);
+            color: var(--brown-800);
+        }
+
+        .info-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           COMPONENT: Steps
+           ============================================ */
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-6);
+            justify-content: center;
+            margin: var(--space-8) 0;
+        }
+
+        .step {
+            background: var(--color-surface);
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            text-align: center;
+            padding: var(--space-8) var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-2);
+            border: 1px solid var(--color-border);
+            transition: all var(--duration-base) var(--ease-spring);
+            position: relative;
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-4);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+            font-weight: 700;
+            box-shadow: var(--shadow-2);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--amber-100), var(--amber-200));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            color: var(--color-primary);
+            font-size: var(--text-2xl);
+        }
+
+        .step h3 {
+            margin-bottom: var(--space-3);
+            font-size: var(--text-lg);
+        }
+
+        .step p {
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        /* ============================================
+           COMPONENT: Gallery
+           ============================================ */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-5);
+            margin: var(--space-8) 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: var(--shadow-2);
+            cursor: pointer;
+            transition: all var(--duration-base) var(--ease-spring);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--duration-slow) var(--ease-out);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(44, 24, 16, 0.6), transparent);
+            opacity: 0;
+            transition: opacity var(--duration-base);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* ============================================
+           COMPONENT: Menu Cards
+           ============================================ */
+        .menu-section {
+            background: linear-gradient(135deg, var(--brown-50) 0%, var(--amber-50) 100%);
+            padding: var(--space-16) 0;
+            margin: var(--space-16) 0;
+            border-radius: var(--radius-xl);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .menu-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-2);
+            transition: all var(--duration-base) var(--ease-spring);
+            border: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-4);
+        }
+
+        .menu-card--featured::before {
+            content: 'EN POPÜLER';
+            position: absolute;
+            top: var(--space-4);
+            right: calc(-1 * var(--space-4));
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            padding: var(--space-1) var(--space-6);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            transform: rotate(45deg);
+            transform-origin: center;
+            box-shadow: var(--shadow-2);
+            z-index: 1;
+        }
+
+        .menu-card-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: var(--space-6);
+            text-align: center;
+        }
+
+        .menu-card-header h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .menu-price {
+            font-family: var(--font-serif);
+            font-size: var(--text-3xl);
+            font-weight: 700;
+        }
+
+        .menu-price span {
+            font-size: var(--text-base);
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .menu-card-body {
+            padding: var(--space-6);
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-items li {
+            padding: var(--space-3) 0;
+            border-bottom: 1px dashed var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .menu-items li:last-child {
+            border-bottom: none;
+        }
+
+        .menu-items i {
+            color: var(--color-success);
+            font-size: var(--text-xs);
+        }
+
+        .menu-card-footer {
+            padding: var(--space-4) var(--space-6);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* ============================================
+           COMPONENT: Reviews
+           ============================================ */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+
+        .review-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-2);
+            border: 1px solid var(--color-border);
+            position: relative;
+            transition: all var(--duration-base) var(--ease-spring);
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-3);
+        }
+
+        .review-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--color-primary);
+            opacity: 0.1;
+            position: absolute;
+            top: var(--space-4);
+            left: var(--space-6);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .review-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            box-shadow: var(--shadow-2);
+        }
+
+        .review-meta h4 {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+            color: var(--brown-800);
+        }
+
+        .review-stars {
+            color: #FFB800;
+            font-size: var(--text-sm);
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .review-date {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-top: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        /* ============================================
+           COMPONENT: Stats Section
+           ============================================ */
+        .stats-section {
+            background: linear-gradient(135deg, var(--brown-800) 0%, var(--brown-700) 100%);
+            color: white;
+            padding: var(--space-16) 0;
+            margin: var(--space-16) 0;
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-8);
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            background: linear-gradient(135deg, var(--amber-300), var(--amber-400));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-item p {
+            opacity: 0.8;
+            font-size: var(--text-sm);
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-6);
+            }
+        }
+
+        /* ============================================
+           COMPONENT: Contact Section
+           ============================================ */
+        .contact-section {
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-4);
+            padding: var(--space-12);
+            margin: var(--space-16) 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+        }
+
+        .contact-info h3 {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-6);
+            color: var(--brown-800);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-5);
+            padding: var(--space-4);
+            background: var(--brown-50);
+            border-radius: var(--radius-md);
+            transition: all var(--duration-base) var(--ease-spring);
+        }
+
+        .contact-item:hover {
+            transform: translateX(8px);
+            background: var(--amber-100);
+            box-shadow: var(--shadow-2);
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-sm);
+            flex-shrink: 0;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: var(--space-1);
+            color: var(--brown-800);
+            font-weight: 600;
+        }
+
+        .contact-item span {
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .contact-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--duration-fast);
+        }
+
+        .contact-item a:hover {
+            color: var(--color-primary-dark);
+            text-decoration: underline;
+        }
+
+        .map-container {
+            height: 100%;
+            min-height: 400px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-2);
+            border: 2px solid var(--color-border);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-8);
+        }
+
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-lg);
+            transition: all var(--duration-base) var(--ease-spring);
+            text-decoration: none;
+            box-shadow: var(--shadow-1);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: var(--shadow-3);
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-btn.facebook {
+            background: #1877F2;
+        }
+
+        .social-btn.twitter {
+            background: #1DA1F2;
+        }
+
+        .social-btn.youtube {
+            background: #FF0000;
+        }
+
+        /* ============================================
+           COMPONENT: Appointment Section
+           ============================================ */
+        .appointment-wrapper {
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-4);
+            padding: var(--space-10);
+            margin: var(--space-16) 0;
+        }
+
+        .appointment-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: var(--space-10);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            color: var(--brown-800);
+        }
+
+        .form-group label i {
+            color: var(--color-primary);
+            font-size: var(--text-xs);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-md);
+            border: 2px solid var(--color-border);
+            background: var(--color-surface);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+            transition: all var(--duration-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .form-control::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .form-control:invalid:not(:placeholder-shown) {
+            border-color: var(--color-error);
+        }
+
+        .form-control:valid:not(:placeholder-shown) {
+            border-color: var(--color-success);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-error {
+            color: var(--color-error);
+            font-size: var(--text-xs);
+            margin-top: var(--space-1);
+            display: none;
+        }
+
+        .form-control:invalid:not(:placeholder-shown)+.form-error {
+            display: block;
+        }
+
+        .capacity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            margin-top: var(--space-2);
+        }
+
+        .capacity-badge--available {
+            background: var(--color-success-light);
+            color: var(--color-success);
+        }
+
+        .capacity-badge--full {
+            background: var(--color-error-light);
+            color: var(--color-error);
+        }
+
+        .appointment-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: var(--space-2);
+        }
+
+        .appointment-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .appointment-list::-webkit-scrollbar-track {
+            background: var(--brown-100);
+            border-radius: var(--radius-full);
+        }
+
+        .appointment-list::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+        }
+
+        .appointment-card {
+            background: var(--amber-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+            border-left: 4px solid var(--color-primary);
+            transition: all var(--duration-base);
+        }
+
+        .appointment-card:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-2);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--color-error);
+            cursor: pointer;
+            font-size: var(--text-lg);
+            transition: all var(--duration-fast);
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .delete-btn:hover {
+            background: var(--color-error-light);
+            transform: scale(1.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--space-10);
+            color: var(--color-text-muted);
+        }
+
+        .empty-state i {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-4);
+            opacity: 0.5;
+        }
+
+        /* ============================================
+           COMPONENT: Toast Notifications
+           ============================================ */
+        .toast {
+            position: fixed;
+            bottom: var(--space-8);
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            z-index: 2000;
+            box-shadow: var(--shadow-5);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            opacity: 0;
+            transition: all var(--duration-slow) var(--ease-spring);
+        }
+
+        .toast--visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast--success {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .toast--error {
+            background: var(--color-error);
+            color: white;
+        }
+
+        .toast--info {
+            background: var(--color-info);
+            color: white;
+        }
+
+        /* ============================================
+           COMPONENT: Floating Action Buttons
+           ============================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: var(--space-8);
+            right: var(--space-8);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-2xl);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all var(--duration-base) var(--ease-spring);
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse-whatsapp {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: calc(var(--space-8) + 70px);
+            right: var(--space-8);
+            width: 48px;
+            height: 48px;
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--duration-base) var(--ease-spring);
+            z-index: 999;
+            box-shadow: var(--shadow-2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        /* ============================================
+           COMPONENT: Admin Panel
+           ============================================ */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-6);
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-panel {
+            background: var(--color-bg);
+            border-radius: var(--radius-2xl);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-5);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+        }
+
+        .admin-header h2 {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .admin-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: var(--transition-fast);
+        }
+
+        .admin-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .admin-content {
+            padding: var(--space-6);
+        }
+
+        .admin-login {
+            text-align: center;
+            padding: var(--space-8);
+        }
+
+        .admin-login h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-6);
+            color: var(--color-text-primary);
+        }
+
+        .admin-login input {
+            max-width: 300px;
+            margin: 0 auto var(--space-4);
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .admin-stat-card {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+
+        .admin-stat-card h4 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .admin-stat-card p {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--text-sm);
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: var(--space-3);
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .admin-table th {
+            background: var(--amber-50);
+            font-weight: 600;
+            color: var(--color-primary);
+            position: sticky;
+            top: 0;
+        }
+
+        .admin-table tr:hover {
+            background: var(--amber-50);
+        }
+
+        .admin-table .actions {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .admin-table .btn-sm {
+            padding: var(--space-1) var(--space-2);
+            font-size: var(--text-xs);
+        }
+
+        .reservation-code {
+            background: var(--amber-100);
+            color: var(--color-primary);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-md);
+            font-family: monospace;
+            font-weight: 600;
+            font-size: var(--text-xs);
+        }
+
+        .verification-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-6);
+        }
+
+        .verification-modal.active {
+            display: flex;
+        }
+
+        .verification-box {
+            background: var(--color-bg);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-5);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .verification-box h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-4);
+            color: var(--color-text-primary);
+        }
+
+        .verification-box p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .verification-code-display {
+            background: linear-gradient(135deg, var(--amber-100), var(--amber-200));
+            border: 2px dashed var(--color-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-4);
+            margin: var(--space-4) 0;
+        }
+
+        .verification-code-display .code {
+            font-family: monospace;
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: 2px;
+        }
+
+        .code-hint {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-2);
+        }
+
+        /* ============================================
+           COMPONENT: Cookie Banner
+           ============================================ */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--brown-800);
+            color: white;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-6);
+            z-index: 1001;
+            transform: translateY(100%);
+            transition: transform var(--duration-slow) var(--ease-out);
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        .cookie-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: var(--space-2) var(--space-6);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: var(--text-sm);
+            transition: all var(--duration-fast);
+            flex-shrink: 0;
+        }
+
+        .cookie-btn:hover {
+            background: var(--color-primary-dark);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-4);
+            }
+        }
+
+        /* ============================================
+           COMPONENT: Working Hours Badge
+           ============================================ */
+        .hours-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            margin-top: var(--space-4);
+        }
+
+        .hours-badge--open {
+            background: var(--color-success-light);
+            color: var(--color-success);
+        }
+
+        .hours-badge--closed {
+            background: var(--color-error-light);
+            color: var(--color-error);
+        }
+
+        /* ============================================
+           COMPONENT: Modal
+           ============================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 24, 16, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--duration-base);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-5);
+            transform: scale(0.9) translateY(20px);
+            transition: transform var(--duration-base) var(--ease-spring);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .modal-title {
+            font-size: var(--text-xl);
+            color: var(--brown-800);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--text-xl);
+            color: var(--color-text-muted);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--duration-fast);
+        }
+
+        .modal-close:hover {
+            background: var(--brown-100);
+            color: var(--color-text);
+        }
+
+        /* ============================================
+           COMPONENT: Loading & Empty States
+           ============================================ */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-10);
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================
+           UTILITY: Scroll Animations
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--duration-slower) var(--ease-out),
+                transform var(--duration-slower) var(--ease-out);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ============================================
+           UTILITY: Skip Link (Accessibility)
+           ============================================ */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--brown-800);
+            color: var(--amber-200);
+            padding: var(--space-12) 0 var(--space-8);
+            margin-top: var(--space-16);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        footer a {
+            color: var(--amber-300);
+            text-decoration: none;
+            transition: color var(--duration-fast);
+        }
+
+        footer a:hover {
+            color: var(--color-primary-light);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-10);
+            }
+
+            .hero-image-wrapper {
+                order: -1;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .hero-floating-card {
+                display: none;
+            }
+
+            .appointment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: calc(70px + var(--space-10));
+            }
+
+            .hero h1 {
+                text-align: center;
+            }
+
+            .hero-description {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-6);
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding: var(--space-6);
+            }
+
+            .appointment-wrapper {
+                padding: var(--space-6);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: var(--text-xl);
+                bottom: var(--space-4);
+                right: var(--space-4);
+            }
+
+            .back-to-top {
+                bottom: calc(var(--space-4) + 60px);
+                right: var(--space-4);
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Kumpircim",
+        "description": "Nilüfer Bursa'nın en lezzetli kumpircisi. Tereyağlı patates, bol kaşar ve 20'den fazla malzeme seçeneği.",
+        "url": "https://kumpircim.com",
+        "telephone": "+905467186855",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sakarya Mah. Bahriye Uçok Cad. Erdoğan 5 Apt 39/B",
+            "addressLocality": "Nilüfer",
+            "addressRegion": "Bursa",
+            "addressCountry": "TR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "40.2139",
+            "longitude": "28.9714"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "10:00",
+                "closes": "22:00"
+            }
+        ],
+        "priceRange": "₺",
+        "servesCuisine": ["Turkish", "Street Food"],
+        "acceptsReservations": "True"
+    }
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <div class="logo">
+                <span class="logo-text">Kumpirim & Waffle</span>
+            </div>
+            <div class="nav-links">
+                <a href="#kumpir-nedir"><i class="fas fa-info-circle"></i> Kumpir</a>
+                <a href="#menü"><i class="fas fa-book-open"></i> Menü</a>
+                <a href="#nasil-yenir"><i class="fas fa-utensils"></i> Nasıl Yenir?</a>
+                <a href="#yorumlar"><i class="fas fa-star"></i> Yorumlar</a>
+                <a href="#randevu"><i class="fas fa-calendar-check"></i> Randevu</a>
+                <a href="#iletisim"><i class="fas fa-map-marker-alt"></i> İletişim</a>
+                <a href="#" onclick="openAdminPanel(); return false;" class="nav-admin-link">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge" id="hoursBadge" role="status" aria-live="polite">
+                        <i class="fas fa-circle" style="font-size: 8px;"></i>
+                        <span id="hoursText">Kontrol ediliyor...</span>
+                    </div>
+                    <h1 id="hero-title">Sıcacık <span>kumpir</span> keyfi<br>Kumpirim & Waffle'de başlar.</h1>
+                    <p class="hero-description">Bursa Nilüfer'in en lezzetli kumpircisi. Tereyağlı patates, bol kaşar ve
+                        eşsiz soslarla tanışın. Randevu alın, gelin, afiyetle yiyin.</p>
+                    <div class="hero-actions">
+                        <a href="#randevu" class="btn btn--primary btn--lg">
+                            <i class="fas fa-calendar-alt"></i> Hemen Rezervasyon
+                        </a>
+                        <a href="#kumpir-nedir" class="btn btn--secondary btn--lg">
+                            <i class="fas fa-star"></i> Keşfet
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-value">5000+</span>
+                            <span class="hero-stat-label">Mutlu Müşteri</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-value">4.9</span>
+                            <span class="hero-stat-label">Yıldız Puan</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-value">20+</span>
+                            <span class="hero-stat-label">Malzeme Çeşidi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="hero-image">
+                        <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.09.10.jpeg"
+                            alt="Kumpircim - Taze kumpir sunumu">
+                    </div>
+                    <div class="hero-floating-card hero-floating-card--1">
+                        <div class="floating-card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div>
+                            <div class="floating-card-text">Sıcak Servis</div>
+                            <div class="floating-card-subtext">Her zaman taze</div>
+                        </div>
+                    </div>
+                    <div class="hero-floating-card hero-floating-card--2">
+                        <div class="floating-card-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <div class="floating-card-text">Lezzet Garantisi</div>
+                            <div class="floating-card-subtext">%100 Memnuniyet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kumpir nedir + değeri -->
+        <section id="kumpir-nedir" class="container">
+            <h2 class="section-title">Kumpir Nedir? 🥔</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-seedling"
+                        style="font-size: 2.2rem; color: var(--color-primary); margin-bottom: 0.5rem; display: inline-block;"></i>
+                    <h3>Dev Patatesin Dansı</h3>
+                    <p>Kumpir, fırında közlenmiş iri patatesin içinin tereyağı ve kaşar peyniri ile harmanlanarak püre
+                        kıvamına getirilmesidir. Üzerine mısır, zeytin, sosis, turşu, soslar ve daha onlarca malzeme
+                        eklenerek her lokmada farklı bir lezzet patlaması yaratır.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-heart" style="font-size: 2.2rem; color: var(--color-primary);"></i>
+                    <h3>Değeri & Önemi</h3>
+                    <p>Kumpir, Türk sokak lezzetinin simgesidir. Besleyici karbonhidrat, lif ve vitamin deposudur. Aynı
+                        zamanda paylaşma kültürünü yansıtır: sevdiklerinizle birlikte malzeme seçmek ve o enfes karışımı
+                        tatmak sosyal bir ritüeldir. Kumpircim bu geleneği en üst seviyede yaşatır.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-crown" style="font-size: 2.2rem; color: var(--color-primary);"></i>
+                    <h3>Kumpircim Farkı</h3>
+                    <p>Doğal tereyağı, özel fırınlama tekniği ve günlük taze malzemeler. 20'den fazla sos çeşidi ve
+                        isteğe göre vegan seçenekler. Her patates özenle hazırlanır, lezzet garantisi veririz.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nasıl Yenir? -->
+        <section id="nasil-yenir" class="container reveal">
+            <h2 class="section-title">Nasıl Yenir? <span style="color: var(--color-primary);">Adım Adım</span> Kumpir
+                Keyfi</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-icon">
+                        <i class="fas fa-hand-peace"></i>
+                    </div>
+                    <h3>Ez & Karıştır</h3>
+                    <p>Sıcak patatesi çatalla ezin, tereyağı ve kaşarla bütünleştirin.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-icon">
+                        <i class="fas fa-bowl-food"></i>
+                    </div>
+                    <h3>Malzeme Seç</h3>
+                    <p>Mısır, sosis, zeytin, sos cennetinden dilediğin eklemeleri yap.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-icon">
+                        <i class="fas fa-utensil-spoon"></i>
+                    </div>
+                    <h3>Karıştır & Kaşı</h3>
+                    <p>En dibe kadar kaşıkla karıştır, her katmanı dene.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-icon">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <h3>Afiyetle Bitir</h3>
+                    <p>Yanında bir ayran veya şalgamla mükemmel uyum.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Görsel Galeri -->
+        <section class="container reveal">
+            <h2 class="section-title">Lezzet <span style="color: var(--color-primary);">Görsel</span> Şöleni</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.35.27.jpeg"
+                        alt="Et sever kumpir - Bol malzemeli">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.26.30%20-%20Kopya.jpeg"
+                        alt="Kumpir çeşitleri - Taze malzemeler">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.35.59.jpeg"
+                        alt="Kumpir sunum - İçecekler">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.28.45.jpeg"
+                        alt="Kumpircim special - En popüler">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.27.42.jpeg"
+                        alt="Kumpir lokum gibi - Tereyağlı">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.32.37.jpeg"
+                        alt="Vegan kumpir - Taze sebzeler">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.24.47%20-%20Kopya.jpeg"
+                        alt="Kumpir servis - Sıcak ve taze">
+                </div>
+                <div class="gallery-item">
+                    <img src="Görseller/WhatsApp%20Image%202026-04-23%20at%2018.38.10%20-%20Kopya.jpeg"
+                        alt="Kumpircim deneyimi - Müşteri memnuniyeti">
+                </div>
+            </div>
+        </section>
+
+        <!-- Menü Bölümü -->
+        <section id="menü" class="container menu-section reveal">
+            <h2 class="section-title">Menümüz <span style="color: var(--color-primary);">💰</span></h2>
+            <p
+                style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-8); font-size: var(--text-lg);">
+                Tereyağlı kumpir ve 20'den fazla malzeme seçeneği
+            </p>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div style="height: 180px; overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+                        <img src="Görseller/clasic.png" alt="Klasik Kumpir"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="menu-card-header">
+                        <h3>🥔 Klasik Kumpir</h3>
+                        <div class="menu-price">₺120</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-items">
+                            <li><i class="fas fa-check"></i> Tereyağlı patates</li>
+                            <li><i class="fas fa-check"></i> Kaşar peyniri</li>
+                            <li><i class="fas fa-check"></i> Mısır</li>
+                            <li><i class="fas fa-check"></i> Zeytin</li>
+                            <li><i class="fas fa-check"></i> Sosis</li>
+                            <li><i class="fas fa-check"></i> 1 adet sos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu-card menu-card--featured">
+                    <div style="height: 180px; overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+                        <img src="Görseller/Kumpircim%20Special.png" alt="Kumpircim Special"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="menu-card-header">
+                        <h3>👑 Kumpircim Special</h3>
+                        <div class="menu-price">₺160</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-items">
+                            <li><i class="fas fa-check"></i> Tereyağlı patates</li>
+                            <li><i class="fas fa-check"></i> Bol kaşar</li>
+                            <li><i class="fas fa-check"></i> Mısır + Bezelye</li>
+                            <li><i class="fas fa-check"></i> Zeytin + Mantar</li>
+                            <li><i class="fas fa-check"></i> Sosis + Salam</li>
+                            <li><i class="fas fa-check"></i> 2 adet sos</li>
+                            <li><i class="fas fa-check"></i> Ceviz içi</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div style="height: 180px; overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+                        <img src="Görseller/vegan%20kumpiar.png" alt="Vegan Kumpir"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="menu-card-header">
+                        <h3>🌱 Vegan Kumpir</h3>
+                        <div class="menu-price">₺140</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-items">
+                            <li><i class="fas fa-check"></i> Zeytinyağlı patates</li>
+                            <li><i class="fas fa-check"></i> Vegan kaşar</li>
+                            <li><i class="fas fa-check"></i> Mısır + Bezelye</li>
+                            <li><i class="fas fa-check"></i> Zeytin + Turşu</li>
+                            <li><i class="fas fa-check"></i> Mantar</li>
+                            <li><i class="fas fa-check"></i> Acılı sos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div style="height: 180px; overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+                        <img src="Görseller/peynir%20aşığı.png" alt="Peynir Aşığı Kumpir"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="menu-card-header">
+                        <h3>🧀 Peynir Aşığı</h3>
+                        <div class="menu-price">₺150</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-items">
+                            <li><i class="fas fa-check"></i> Tereyağlı patates</li>
+                            <li><i class="fas fa-check"></i> Kaşar + Cheddar</li>
+                            <li><i class="fas fa-check"></i> Beyaz peynir</li>
+                            <li><i class="fas fa-check"></i> Lor peyniri</li>
+                            <li><i class="fas fa-check"></i> Zeytin</li>
+                            <li><i class="fas fa-check"></i> 1 adet sos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div style="height: 180px; overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+                        <img src="Görseller/et%20sever.png" alt="Et Sever Kumpir"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="menu-card-header">
+                        <h3>🥩 Et Sever</h3>
+                        <div class="menu-price">₺180</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-items">
+                            <li><i class="fas fa-check"></i> Tereyağlı patates</li>
+                            <li><i class="fas fa-check"></i> Kaşar peyniri</li>
+                            <li><i class="fas fa-check"></i> Sosis + Salam</li>
+                            <li><i class="fas fa-check"></i> Kavurma</li>
+                            <li><i class="fas fa-check"></i> Mısır + Zeytin</li>
+                            <li><i class="fas fa-check"></i> 2 adet sos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div style="height: 180px; overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+                        <img src="Görseller/iöecekler.png" alt="İçecekler"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="menu-card-header">
+                        <h3>🥤 İçecekler</h3>
+                        <div class="menu-price">₺30-50</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-items">
+                            <li><i class="fas fa-glass-water"></i> Ayran (₺30)</li>
+                            <li><i class="fas fa-bottle-water"></i> Şalgam (₺35)</li>
+                            <li><i class="fas fa-wine-bottle"></i> Gazlı içecekler (₺40)</li>
+                            <li><i class="fas fa-mug-hot"></i> Çay (₺25)</li>
+                            <li><i class="fas fa-coffee"></i> Türk kahvesi (₺50)</li>
+                            <li><i class="fas fa-lemon"></i> Ev limonatası (₺45)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Randevu Sistemi -->
+        <section id="randevu" class="container reveal">
+            <div class="appointment-wrapper">
+                <h2 class="section-title" style="margin-top: 0;"><span style="color: var(--color-primary);">📅</span>
+                    Randevu & Rezervasyon</h2>
+                <p
+                    style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-8); font-size: var(--text-lg);">
+                    Masanızı ayırtın, taze kumpirin tadını garantileyin. Aynı saat diliminde en fazla 2 rezervasyon.
+                </p>
+                <div class="appointment-grid">
+                    <!-- Form -->
+                    <div>
+                        <form id="appointmentForm" novalidate>
+                            <div class="form-group">
+                                <label for="fullName"><i class="fas fa-user"></i> Ad Soyad *</label>
+                                <input type="text" id="fullName" class="form-control" required>
+                                <span class="form-error">Lütfen adınızı ve soyadınızı girin</span>
+                                <small
+                                    style="color: var(--color-text-secondary); font-size: var(--text-xs); margin-top: var(--space-1); display: block;">
+                                    <i class="fas fa-shield-alt"></i> Güvenlik gereği isim tam soy isim başharfi baz
+                                    alınacaktır
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"><i class="fas fa-phone"></i> Telefon *</label>
+                                <input type="tel" id="phone" class="form-control" required maxlength="4"
+                                    pattern="[0-9]{4}">
+                                <span class="form-error">Lütfen son 4 hane girin</span>
+                                <small
+                                    style="color: var(--color-text-secondary); font-size: var(--text-xs); margin-top: var(--space-1); display: block;">
+                                    <i class="fas fa-shield-alt"></i> Güvenlik gereği telefon numaranızın sadece 4
+                                    hanesi baz alınacaktır
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i> E-posta *</label>
+                                <input type="email" id="email" class="form-control" required>
+                                <span class="form-error">Geçerli e-posta adresi girin</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="date"><i class="fas fa-calendar-day"></i> Tarih *</label>
+                                <input type="date" id="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="timeSelect"><i class="fas fa-clock"></i> Saat *</label>
+                                <select id="timeSelect" class="form-control" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="guests"><i class="fas fa-users"></i> Kişi Sayısı</label>
+                                <input type="number" id="guests" class="form-control" min="1" max="8" value="2">
+                            </div>
+                            <div class="form-group">
+                                <label for="notes"><i class="fas fa-comment"></i> Notlar</label>
+                                <textarea id="notes" class="form-control" rows="2"
+                                    placeholder="Özel istek, malzeme tercihleri..."></textarea>
+                            </div>
+                            <div id="capacityInfo" class="capacity-badge capacity-badge--available">
+                                <i class="fas fa-info-circle"></i> Seçilen saatteki doluluk kontrol edilecek
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--lg btn--block"
+                                style="margin-top: var(--space-6);">
+                                <i class="fas fa-check"></i> Randevu Al
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Randevu Listesi -->
+                    <div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-5); flex-wrap: wrap; gap: var(--space-3);">
+                            <h3 style="display: flex; align-items: center; gap: var(--space-2);">
+                                <i class="fas fa-list-ul" style="color: var(--color-primary);"></i> Rezervasyonlarım
+                            </h3>
+                            <div style="display: flex; gap: var(--space-2);">
+                                <button class="btn btn--primary btn--sm" onclick="openVerificationModal()">
+                                    <i class="fas fa-search"></i> Rezervasyon Sorgula
+                                </button>
+                                <button id="refreshList" class="btn btn--secondary btn--sm">
+                                    <i class="fas fa-sync-alt"></i> Yenile
+                                </button>
+                            </div>
+                        </div>
+                        <div id="appointmentsContainer" class="appointment-list">
+                            <div class="loading-state">
+                                <div class="spinner"></div>
+                                <p>Yükleniyor...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Müşteri Yorumları -->
+        <section id="yorumlar" class="container reveal">
+            <h2 class="section-title">Müşteri <span style="color: var(--color-primary);">Yorumları</span> ⭐</h2>
+            <p
+                style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-8); font-size: var(--text-lg);">
+                Bizi tercih eden müşterilerimizin deneyimleri
+            </p>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">AY</div>
+                        <div class="review-meta">
+                            <h4>Ayşe Yılmaz</h4>
+                            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Görükle'de yediğim en iyi kumpir! Patatesin içi o kadar yumuşak ki, tereyağ
+                        ve kaşar tam kıvamında. Malzeme çeşitliliği de harika. Kesinlikle tavsiye ederim."</p>
+                    <div class="review-date"><i class="fas fa-calendar"></i> 15 Ocak 2025</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">MK</div>
+                        <div class="review-meta">
+                            <h4>Mehmet Kaya</h4>
+                            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Randevu sistemi çok pratik! Beklemeden masama oturdum. Et sever kumpir
+                        sipariş ettim, kavurmalı gerçekten efsane olmuş. Servis hızlı ve personel çok ilgili."</p>
+                    <div class="review-date"><i class="fas fa-calendar"></i> 10 Ocak 2025</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">SC</div>
+                        <div class="review-meta">
+                            <h4>Selin Çelik</h4>
+                            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star-half-alt"></i></div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Vegan kumpir seçeneği bulması zordu ama burada harika bir seçenek var.
+                        Zeytinyağlı patates ve vegan kaşar çok lezzetli. Teşekkürler Kumpircim!"</p>
+                    <div class="review-date"><i class="fas fa-calendar"></i> 5 Ocak 2025</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">BD</div>
+                        <div class="review-meta">
+                            <h4>Burak Demir</h4>
+                            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Ailece geliyoruz, her seferinde memnun ayrılıyoruz. Çocuklar klasik kumpiri
+                        çok seviyor. Fiyatlar da gayet uygun. Bursa'da kumpir denince ilk akla gelen yer!"</p>
+                    <div class="review-date"><i class="fas fa-calendar"></i> 1 Ocak 2025</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">EO</div>
+                        <div class="review-meta">
+                            <h4>Emre Özdemir</h4>
+                            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Special kumpir gerçekten özel! Ceviz içi eklenmesi çok iyi düşünülmüş.
+                        Yanında şalgam içmeyi unutmayın, mükemmel uyum. Lokasyon da çok kolay bulunuyor."</p>
+                    <div class="review-date"><i class="fas fa-calendar"></i> 28 Aralık 2024</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">FA</div>
+                        <div class="review-meta">
+                            <h4>Fatma Aydın</h4>
+                            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Peynir aşığı kumpir tam benlik! 4 farklı peynir bir arada, mükemmel bir
+                        lezzet patlaması. WhatsApp'tan sipariş vermek de çok kolay. Teşekkürler!"</p>
+                    <div class="review-date"><i class="fas fa-calendar"></i> 20 Aralık 2024</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İstatistikler -->
+        <section class="container stats-section reveal">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 id="statCustomers">5000+</h3>
+                        <p>MUTLU MÜŞTERİ</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="statYears">5</h3>
+                        <p>YILLIK DENEYİM</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="statMenu">20+</h3>
+                        <p>MALZEME ÇEŞİDİ</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="statRating">4.9</h3>
+                        <p>ORTALAMA PUAN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İletişim Bölümü -->
+        <section id="iletisim" class="container contact-section reveal">
+            <h2 class="section-title" style="margin-top: 0;">Bize <span
+                    style="color: var(--color-primary);">Ulaşın</span> 📍</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>İletişim Bilgilerimiz</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Adres</strong>
+                            <span>Sakarya Mah. Bahriye Uçok Cad.<br>Erdoğan 5 Apt 39/B, Nilüfer/Bursa</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <strong>Telefon</strong>
+                            <span><a href="tel:+905467186855">0546 718 68 55</a></span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-posta</strong>
+                            <span><a href="mailto:info@kumpircim.com">info@kumpircim.com</a></span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Çalışma Saatleri</strong>
+                            <span>Her gün 10:00 - 22:00<br>Pazartesi'den Pazar'a açığız!</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Önemli Bilgi</strong>
+                            <span>Randevu sistemi ile beklemeyin!<br>Aynı saatte max. 2 rezervasyon.</span>
+                        </div>
+                    </div>
+                    <h3 style="margin-top: 2rem;">Sosyal Medya</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-btn instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="map-container" id="map"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Ana içeriğe atla</a>
+
+    <!-- Floating Action Buttons -->
+    <a href="https://wa.me/905467186855?text=Merhaba%2C%20Kumpircim'den%20sipari%C5%9F%20vermek%20istiyorum"
+        class="whatsapp-float" title="WhatsApp'tan Sipariş Ver" target="_blank" rel="noopener noreferrer"
+        aria-label="WhatsApp üzerinden sipariş ver">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="back-to-top" id="backToTop" role="button" tabindex="0" aria-label="Sayfanın başına dön">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+
+    <!-- Verification Modal (Müşteri Doğrulama) -->
+    <div class="verification-modal" id="verificationModal">
+        <div class="verification-box">
+            <i class="fas fa-shield-alt"
+                style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--space-4);"></i>
+            <h3>Rezervasyon Doğrulama</h3>
+            <p>Rezervasyonunuzu görüntülemek için doğrulama kodunu girin</p>
+            <div class="verification-code-display">
+                <div class="code" id="userCode">---</div>
+                <p class="code-hint">İsim Soyisim baş harfi + Telefon son 4 hane</p>
+            </div>
+            <form id="verifyForm" onsubmit="verifyReservation(event)">
+                <div class="form-group">
+                    <input type="text" id="verifyCode" class="form-control" placeholder="Örn: AY1234" maxlength="6"
+                        required
+                        style="text-align: center; font-family: monospace; letter-spacing: 2px; font-size: 1.25rem;">
+                </div>
+                <button type="submit" class="btn btn--primary btn--block">
+                    <i class="fas fa-search"></i> Rezervasyonumu Bul
+                </button>
+            </form>
+            <button class="btn btn--secondary btn--block" style="margin-top: var(--space-3);"
+                onclick="closeVerificationModal()">
+                <i class="fas fa-times"></i> Kapat
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-panel">
+            <div class="admin-header">
+                <h2><i class="fas fa-lock"></i> Admin Paneli</h2>
+                <div style="display: flex; gap: var(--space-2);">
+                    <button class="admin-close" onclick="logoutAdmin()" style="background: rgba(255, 255, 255, 0.2);">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                    <button class="admin-close" onclick="closeAdminPanel()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="admin-content">
+                <!-- Login View - Square Box -->
+                <div id="adminLogin"
+                    style="display: flex; justify-content: center; align-items: center; min-height: 400px;">
+                    <div
+                        style="background: linear-gradient(145deg, var(--amber-50), white); border: 2px solid var(--color-primary); border-radius: var(--radius-2xl); padding: var(--space-8); width: 100%; max-width: 380px; box-shadow: var(--shadow-4); text-align: center;">
+                        <div
+                            style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5);">
+                            <i class="fas fa-lock" style="font-size: 2rem; color: white;"></i>
+                        </div>
+                        <h3
+                            style="font-family: var(--font-serif); font-size: var(--text-xl); color: var(--color-text-primary); margin-bottom: var(--space-5);">
+                            Admin Girişi</h3>
+                        <form onsubmit="loginAdmin(event)">
+                            <div class="form-group" style="text-align: left; margin-bottom: var(--space-4);">
+                                <label
+                                    style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-secondary); margin-bottom: var(--space-1); display: block;"><i
+                                        class="fas fa-user"></i> Kullanıcı Adı</label>
+                                <input type="text" id="adminUsername" class="form-control" placeholder="admin" required
+                                    style="text-align: center;">
+                            </div>
+                            <div class="form-group" style="text-align: left; margin-bottom: var(--space-5);">
+                                <label
+                                    style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-secondary); margin-bottom: var(--space-1); display: block;"><i
+                                        class="fas fa-key"></i> Şifre</label>
+                                <input type="password" id="adminPassword" class="form-control" placeholder="••••••••••"
+                                    required style="text-align: center;">
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--lg btn--block"
+                                style="margin-bottom: var(--space-3);">
+                                <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                            </button>
+                        </form>
+                        <p id="loginError"
+                            style="color: var(--color-error); margin-top: var(--space-3); display: none; font-size: var(--text-sm);">
+                            <i class="fas fa-exclamation-circle"></i> Hatalı kullanıcı adı veya şifre!
+                        </p>
+                        <p
+                            style="font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: var(--space-4); opacity: 0.7;">
+                            <i class="fas fa-info-circle"></i> Varsayılan: admin / admin123
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div id="adminDashboard" style="display: none;">
+                    <div class="admin-stats">
+                        <div class="admin-stat-card">
+                            <h4 id="totalReservations">0</h4>
+                            <p>Toplam Rezervasyon</p>
+                        </div>
+                        <div class="admin-stat-card">
+                            <h4 id="todayReservations">0</h4>
+                            <p>Bugün</p>
+                        </div>
+                        <div class="admin-stat-card">
+                            <h4 id="upcomingReservations">0</h4>
+                            <p>Bekleyen</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-4); flex-wrap: wrap;">
+                        <button class="btn btn--primary" onclick="filterReservations('all')">
+                            <i class="fas fa-list"></i> Tümü
+                        </button>
+                        <button class="btn btn--secondary" onclick="filterReservations('today')">
+                            <i class="fas fa-calendar-day"></i> Bugün
+                        </button>
+                        <button class="btn btn--secondary" onclick="filterReservations('upcoming')">
+                            <i class="fas fa-calendar-week"></i> Yaklaşan
+                        </button>
+                        <button class="btn btn--error" onclick="clearAllReservations()">
+                            <i class="fas fa-trash"></i> Hepsini Sil
+                        </button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Kod</th>
+                                    <th>İsim</th>
+                                    <th>Tarih</th>
+                                    <th>Saat</th>
+                                    <th>Kişi</th>
+                                    <th>Telefon</th>
+                                    <th>Notlar</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminReservationsTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Çerez bildirimi">
+        <span>🍪 Bu web sitesi size en iyi deneyimi sunmak için çerezleri kullanır.</span>
+        <button class="cookie-btn" onclick="acceptCookies()" aria-label="Çerezleri kabul et">Kabul Ediyorum</button>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p
+                style="font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-2);">
+                Kumpirim & Waffle
+            </p>
+            <p style="margin-bottom: var(--space-4);">Sakarya Mah. Bahriye Uçok Cad. Erdoğan 5 Apt 39/B, Nilüfer/Bursa
+            </p>
+            <p style="margin-bottom: var(--space-4);">
+                <i class="fas fa-phone"></i> <a href="tel:+905467186855">0546 718 68 55</a> | Her gün 10:00 - 22:00
+            </p>
+            <p style="font-size: var(--text-xs); opacity: 0.7; margin-top: var(--space-6);">
+                Kumpirim & Waffle Ⓒ 2025 | Tüm hakları saklıdır | Bol malzemeli, sıcacık kumpirin adresi
+            </p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS for Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // ------ DATA LAYER (LocalStorage) ------
+        const STORAGE_KEY = "kumpircim_appointments";
+        let appointments = [];
+
+        function generateId() { return Date.now() + '-' + Math.random().toString(36).substr(2, 8); }
+
+        function loadAppointments() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                appointments = JSON.parse(stored);
+            } else {
+                // Demo örnekler
+                appointments = [
+                    { id: generateId(), fullName: "Ebru Karahan", phone: "05551234567", email: "ebru@example.com", date: getTodayPlus(1), time: "13:00", guests: 2, notes: "Ekstra mısır" },
+                    { id: generateId(), fullName: "Cem Kaya", phone: "05332221133", email: "cem@kumpir.com", date: getTodayPlus(1), time: "14:30", guests: 3, notes: "Acılı sos tercih" }
+                ];
+                saveAppointments();
+            }
+            renderAppointments();
+        }
+
+        function getTodayPlus(days) { let d = new Date(); d.setDate(d.getDate() + days); return d.toISOString().split('T')[0]; }
+        function saveAppointments() { localStorage.setItem(STORAGE_KEY, JSON.stringify(appointments)); }
+
+        // Kapasite kontrolü (max 2 slot)
+        function getSlotCount(date, time, excludeId = null) {
+            return appointments.filter(app => app.date === date && app.time === time && app.id !== excludeId).length;
+        }
+        function isSlotFull(date, time, excludeId = null) { return getSlotCount(date, time, excludeId) >= 2; }
+
+        // Saat seçenekleri: 10:00 - 21:30 (30dk aralıklı)
+        function populateTimeSelect() {
+            const select = document.getElementById('timeSelect');
+            if (!select) return;
+            select.innerHTML = '';
+            for (let hour = 10; hour <= 21; hour++) {
+                for (let min of [0, 30]) {
+                    let timeStr = `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
+                    if (hour === 21 && min === 30) { select.appendChild(new Option(timeStr, timeStr)); break; }
+                    select.appendChild(new Option(timeStr, timeStr));
+                }
+            }
+            select.value = "13:00";
+        }
+
+        // kapasite bilgi güncelle
+        async function updateCapacityDisplay() {
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('timeSelect').value;
+            const infoDiv = document.getElementById('capacityInfo');
+            if (!date || !time) { infoDiv.innerHTML = '<i class="fas fa-hourglass-half"></i> Tarih ve saat seçiniz'; return; }
+            const currentCount = getSlotCount(date, time);
+            const remaining = 2 - currentCount;
+            if (remaining <= 0) infoDiv.innerHTML = `<i class="fas fa-ban" style="color:#c0392b;"></i> Bu saat dilimi dolu! Lütfen başka saat seçin. (Maks. 2 rezervasyon)`;
+            else infoDiv.innerHTML = `<i class="fas fa-chair"></i> Bu saatte ${currentCount}/2 rezervasyon dolu, kalan kontenjan: ${remaining}`;
+        }
+
+        // randevu sil
+        function deleteAppointment(id) {
+            if (confirm("Randevuyu iptal etmek istediğinize emin misiniz?")) {
+                appointments = appointments.filter(app => app.id !== id);
+                saveAppointments();
+                renderAppointments();
+                showToast("Randevu başarıyla iptal edildi.", "info");
+                updateCapacityDisplay();
+            }
+        }
+
+        function renderAppointments() {
+            const container = document.getElementById('appointmentsContainer');
+            if (!container) return;
+            if (appointments.length === 0) {
+                container.innerHTML = `<div class="info-card" style="text-align:center;"><i class="far fa-calendar-times" style="font-size: 2rem;"></i><p>Henüz randevu yok. İlk rezervasyonu siz yapın!</p></div>`;
+                return;
+            }
+            const sorted = [...appointments].sort((a, b) => (a.date + b.time).localeCompare(b.date + b.time));
+            container.innerHTML = sorted.map(app => `
+            <div class="appointment-card">
+                <div style="display:flex; justify-content:space-between; align-items:start;">
+                    <div><strong><i class="fas fa-user-circle"></i> ${escapeHtml(app.fullName)}</strong><br>
+                    <span style="font-size:0.8rem;"><i class="fas fa-calendar-alt"></i> ${app.date} - ${app.time} | 👥 ${app.guests} kişi</span>
+                    <div style="font-size:0.75rem; color:#7f5a3e;"><i class="fas fa-comment"></i> ${escapeHtml(app.notes || "-")}</div>
+                    </div>
+                    <button class="delete-btn" onclick="deleteAppointment('${app.id}')"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+        `).join('');
+        }
+
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, function (m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+
+        function showToast(message, type = "success") {
+            // Remove existing toast
+            let existing = document.querySelector('.toast');
+            if (existing) {
+                existing.classList.remove('toast--visible');
+                setTimeout(() => existing.remove(), 300);
+            }
+
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = `toast toast--${type}`;
+
+            const iconMap = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+
+            toast.innerHTML = `<i class="fas ${iconMap[type] || iconMap.success}"></i> <span>${escapeHtml(message)}</span>`;
+            document.body.appendChild(toast);
+
+            // Trigger animation
+            requestAnimationFrame(() => {
+                toast.classList.add('toast--visible');
+            });
+
+            // Auto remove
+            setTimeout(() => {
+                toast.classList.remove('toast--visible');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // form submit
+        function addAppointment(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('timeSelect').value;
+            const guests = parseInt(document.getElementById('guests').value);
+            const notes = document.getElementById('notes').value.trim();
+
+            if (!fullName || !phone || !email || !date || !time) {
+                showToast("Lütfen tüm alanları doldurun (*)", "error");
+                return;
+            }
+            if (!/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/.test(phone) && phone.length < 9) {
+                showToast("Geçerli telefon numarası giriniz.", "error"); return;
+            }
+            if (!email.includes('@') || !email.includes('.')) { showToast("Geçerli e-posta adresi yazın.", "error"); return; }
+            const today = new Date().toISOString().split('T')[0];
+            if (date < today) { showToast("Geçmiş tarih seçemezsiniz.", "error"); return; }
+            if (guests < 1 || guests > 8) { showToast("Kişi sayısı 1-8 arasında olmalı.", "error"); return; }
+            if (isSlotFull(date, time)) {
+                showToast("Bu saat diliminde kontenjan doludur! Lütfen başka saat seçin.", "error");
+                return;
+            }
+
+            // Process name: Keep first name + first letter of last name
+            const names = fullName.split(' ');
+            const firstName = names[0];
+            const lastNameInitial = names.length > 1 ? names[names.length - 1][0] : '';
+            const maskedName = lastNameInitial ? `${firstName} ${lastNameInitial}` : firstName;
+
+            const newApp = {
+                id: generateId(),
+                fullName: maskedName, phone, email, date, time, guests, notes: notes || "-", createdAt: new Date().toISOString()
+            };
+            appointments.push(newApp);
+            saveAppointments();
+            renderAppointments();
+
+            // Show verification code to user
+            setTimeout(() => {
+                showVerificationCode(fullName, phone, newApp.id);
+            }, 500);
+
+            document.getElementById('appointmentForm').reset();
+            document.getElementById('date').value = getTodayPlus(0);
+            updateCapacityDisplay();
+            showToast("🎉 Randevunuz oluşturuldu! Doğrulama kodunuzu not edin.", "success");
+        }
+
+        // DOM Ready Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize form
+            populateTimeSelect();
+            loadAppointments();
+
+            // Check admin session on load
+            checkSessionTimeout();
+
+            // Set min date to today
+            const dateInput = document.getElementById('date');
+            const todayFormatted = new Date().toISOString().split('T')[0];
+            if (dateInput) {
+                dateInput.setAttribute('min', todayFormatted);
+                dateInput.value = todayFormatted;
+            }
+
+            // Initial capacity display
+            updateCapacityDisplay();
+
+            // Event listeners
+            document.getElementById('date')?.addEventListener('change', updateCapacityDisplay);
+            document.getElementById('timeSelect')?.addEventListener('change', updateCapacityDisplay);
+            document.getElementById('appointmentForm')?.addEventListener('submit', addAppointment);
+            document.getElementById('refreshList')?.addEventListener('click', () => {
+                renderAppointments();
+                showToast("Liste yenilendi", "info");
+                updateCapacityDisplay();
+            });
+
+            // Initialize premium features
+            initMap();
+            initScrollReveal();
+            initNavbarScroll();
+            initBackToTop();
+            checkWorkingHours();
+            showCookieBanner();
+
+            // Keyboard accessibility for back-to-top
+            document.getElementById('backToTop')?.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        window.deleteAppointment = deleteAppointment;
+
+        // ===== MAP INTEGRATION =====
+        function initMap() {
+            const mapContainer = document.getElementById('map');
+            if (!mapContainer) return;
+
+            // Nilüfer, Bursa coordinates (approximate for Sakarya Mah.)
+            const lat = 40.2139;
+            const lng = 28.9714;
+
+            const map = L.map('map').setView([lat, lng], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            const marker = L.marker([lat, lng]).addTo(map);
+            marker.bindPopup('<b>Kumpircim</b><br>Sakarya Mah. Bahriye Uçok Cad.<br>Erdoğan 5 Apt 39/B<br>Nilüfer/Bursa').openPopup();
+        }
+
+        // ===== SCROLL REVEAL ANIMATIONS =====
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Unobserve after revealing
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        // ===== NAVBAR SCROLL EFFECT =====
+        function initNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add('navbar--scrolled');
+                } else {
+                    navbar.classList.remove('navbar--scrolled');
+                }
+            }, { passive: true });
+        }
+
+        // ===== BACK TO TOP BUTTON =====
+        function initBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            if (!backToTop) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // ===== WORKING HOURS CHECK =====
+        function checkWorkingHours() {
+            const hoursBadge = document.getElementById('hoursBadge');
+            const hoursText = document.getElementById('hoursText');
+            const hoursIcon = hoursBadge?.querySelector('i');
+            if (!hoursBadge || !hoursText) return;
+
+            const now = new Date();
+            const hour = now.getHours();
+
+            const isOpen = hour >= 10 && hour < 22;
+
+            if (isOpen) {
+                hoursBadge.className = 'hero-badge hours-badge--open';
+                hoursIcon.className = 'fas fa-circle';
+                hoursIcon.style.cssText = 'font-size: 8px; color: var(--color-success);';
+                hoursText.textContent = 'Şu an AÇIK - Hemen gel!';
+            } else {
+                hoursBadge.className = 'hero-badge hours-badge--closed';
+                hoursIcon.className = 'fas fa-circle';
+                hoursIcon.style.cssText = 'font-size: 8px; color: var(--color-error);';
+                hoursText.textContent = 'Şu an KAPALI - 10:00\'da açılıyoruz';
+            }
+        }
+
+        // ===== COOKIE BANNER =====
+        function showCookieBanner() {
+            const banner = document.getElementById('cookieBanner');
+            if (!banner) return;
+
+            const cookiesAccepted = localStorage.getItem('kumpircim_cookies');
+            if (!cookiesAccepted) {
+                setTimeout(() => {
+                    banner.classList.add('show');
+                }, 2000);
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('kumpircim_cookies', 'accepted');
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.classList.remove('show');
+        }
+        window.acceptCookies = acceptCookies;
+
+        // ===== NUMBER COUNTER ANIMATION =====
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 30);
+        }
+
+        // Animate stats when visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+                    const statCustomers = document.getElementById('statCustomers');
+                    const statYears = document.getElementById('statYears');
+                    const statMenu = document.getElementById('statMenu');
+                    const statRating = document.getElementById('statRating');
+
+                    if (statCustomers) animateCounter(statCustomers, 5000, '+');
+                    if (statYears) animateCounter(statYears, 5, '');
+                    if (statMenu) animateCounter(statMenu, 20, '+');
+                    if (statRating) {
+                        let current = 0;
+                        const timer = setInterval(() => {
+                            current += 0.1;
+                            if (current >= 4.9) {
+                                statRating.textContent = '4.9';
+                                clearInterval(timer);
+                            } else {
+                                statRating.textContent = current.toFixed(1);
+                            }
+                        }, 50);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) statsObserver.observe(statsSection);
+        });
+
+        // ===== UTILITY: HTML ESCAPE =====
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ============================================
+        // ADMIN PANEL & VERIFICATION SYSTEM
+        // ============================================
+
+        // Admin Credentials (Password is hashed for security)
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'; // admin123 (SHA-256)
+
+        // Security Settings
+        const MAX_LOGIN_ATTEMPTS = 5;
+        const LOCKOUT_DURATION = 30000; // 30 seconds
+        const SESSION_TIMEOUT = 1800000; // 30 minutes
+
+        // Track login attempts
+        let loginAttempts = 0;
+        let lockoutUntil = 0;
+
+        // Generate verification code: First letters of full name + last 4 digits of phone
+        function generateVerificationCode(fullName, phone) {
+            const names = fullName.trim().split(' ');
+            const initials = names.map(n => n[0].toUpperCase()).join('');
+            const last4 = phone.trim();
+            return initials + last4;
+        }
+
+        // Show verification modal with generated code
+        function showVerificationCode(fullName, phone, reservationId) {
+            const code = generateVerificationCode(fullName, phone);
+            document.getElementById('userCode').textContent = code;
+            document.getElementById('verificationModal').classList.add('active');
+            document.getElementById('userCode').parentElement.style.display = 'block';
+
+            // Store current reservation for verification
+            window.currentVerificationReservation = reservationId;
+        }
+
+        // Open verification modal for searching
+        function openVerificationModal() {
+            document.getElementById('userCode').textContent = '---';
+            document.getElementById('userCode').parentElement.style.display = 'none';
+            document.getElementById('verificationModal').classList.add('active');
+        }
+
+        function closeVerificationModal() {
+            document.getElementById('verificationModal').classList.remove('active');
+            document.getElementById('verifyForm').reset();
+        }
+
+        function verifyReservation(e) {
+            e.preventDefault();
+            const inputCode = document.getElementById('verifyCode').value.toUpperCase();
+
+            // Find reservation by code
+            const found = appointments.find(app => {
+                const expectedCode = generateVerificationCode(app.fullName, app.phone);
+                return expectedCode === inputCode;
+            });
+
+            if (found) {
+                showToast(`✅ Rezervasyon bulundu! ${found.date} ${found.time}`, 'success');
+                closeVerificationModal();
+
+                // Show reservation details in a nice modal or alert
+                setTimeout(() => {
+                    alert(`Rezervasyon Detayları:\n\nİsim: ${found.fullName}\nTarih: ${found.date}\nSaat: ${found.time}\nKişi: ${found.guests}\nNotlar: ${found.notes || '-'}`);
+                }, 300);
+            } else {
+                showToast('❌ Rezervasyon bulunamadı! Kodu kontrol edin.', 'error');
+            }
+        }
+
+        // Admin Panel Functions
+        function openAdminPanel() {
+            document.getElementById('adminModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Check if already logged in
+            const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+            if (isLoggedIn) {
+                showAdminDashboard();
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loginAdmin(e) {
+            e.preventDefault();
+            const username = document.getElementById('adminUsername').value.trim();
+            const password = document.getElementById('adminPassword').value;
+
+            // Check if locked out
+            const now = Date.now();
+            if (now < lockoutUntil) {
+                const remainingTime = Math.ceil((lockoutUntil - now) / 1000);
+                showToast(`⏱️ Çok fazla deneme! ${remainingTime} saniye bekleyin.`, 'error');
+                return;
+            }
+
+            // Reset attempts if lockout period passed
+            if (now >= lockoutUntil && loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                loginAttempts = 0;
+            }
+
+            // Hash the entered password
+            async function hashPassword(password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                return hashHex;
+            }
+
+            hashPassword(password).then(hashedPassword => {
+                if (username === ADMIN_USERNAME && hashedPassword === ADMIN_PASSWORD_HASH) {
+                    // Reset login attempts on success
+                    loginAttempts = 0;
+                    lockoutUntil = 0;
+
+                    // Set session with timestamp
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('loginTime', now.toString());
+
+                    document.getElementById('loginError').style.display = 'none';
+                    showToast('✅ Giriş başarılı! Hoş geldiniz.', 'success');
+                    showAdminDashboard();
+                } else {
+                    loginAttempts++;
+                    const remainingAttempts = MAX_LOGIN_ATTEMPTS - loginAttempts;
+
+                    if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                        lockoutUntil = now + LOCKOUT_DURATION;
+                        showToast(`🔒 Çok fazla hatalı deneme! 30 saniye bekleyin.`, 'error');
+                    } else {
+                        showToast(`❌ Hatalı şifre! ${remainingAttempts} deneme hakkı kaldı.`, 'error');
+                    }
+
+                    document.getElementById('loginError').style.display = 'block';
+                }
+            });
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('adminLogin').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'block';
+            updateAdminStats();
+            renderAdminTable();
+
+            // Start session timeout check
+            checkSessionTimeout();
+        }
+
+        function checkSessionTimeout() {
+            const loginTime = sessionStorage.getItem('loginTime');
+            if (loginTime) {
+                const elapsed = Date.now() - parseInt(loginTime);
+                if (elapsed > SESSION_TIMEOUT) {
+                    logoutAdmin();
+                    showToast('⏰ Oturum süresi doldu. Lütfen tekrar giriş yapın.', 'warning');
+                    return;
+                }
+            }
+
+            // Check every minute
+            setTimeout(checkSessionTimeout, 60000);
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('adminLoggedIn');
+            sessionStorage.removeItem('loginTime');
+            document.getElementById('adminLogin').style.display = 'flex';
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            showToast('👋 Çıkış yapıldı.', 'info');
+        }
+
+        function updateAdminStats() {
+            const today = new Date().toISOString().split('T')[0];
+
+            document.getElementById('totalReservations').textContent = appointments.length;
+            document.getElementById('todayReservations').textContent = appointments.filter(a => a.date === today).length;
+            document.getElementById('upcomingReservations').textContent = appointments.filter(a => a.date >= today).length;
+        }
+
+        function renderAdminTable(filter = 'all') {
+            const tbody = document.getElementById('adminReservationsTable');
+            const today = new Date().toISOString().split('T')[0];
+
+            let filtered = appointments;
+            if (filter === 'today') {
+                filtered = appointments.filter(a => a.date === today);
+            } else if (filter === 'upcoming') {
+                filtered = appointments.filter(a => a.date >= today);
+            }
+
+            // Sort by date and time
+            filtered.sort((a, b) => {
+                const dateCompare = a.date.localeCompare(b.date);
+                if (dateCompare !== 0) return dateCompare;
+                return a.time.localeCompare(b.time);
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: var(--space-8); color: var(--color-text-secondary);"><i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: var(--space-3);"></i><br>Rezervasyon bulunmamaktadır.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(app => {
+                const code = generateVerificationCode(app.fullName, app.phone);
+                const maskedPhone = app.phone.slice(0, -4).replace(/./g, '*') + app.phone.slice(-4);
+
+                return `
+                    <tr>
+                        <td><span class="reservation-code">${code}</span></td>
+                        <td><strong>${escapeHtml(app.fullName)}</strong></td>
+                        <td>${app.date}</td>
+                        <td>${app.time}</td>
+                        <td>${app.guests}</td>
+                        <td>${maskedPhone}</td>
+                        <td>${escapeHtml(app.notes) || '-'}</td>
+                        <td class="actions">
+                            <button class="btn btn--primary btn-sm" onclick="showReservationDetails('${app.id}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn--error btn-sm" onclick="adminDeleteReservation('${app.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterReservations(type) {
+            renderAdminTable(type);
+        }
+
+        function showReservationDetails(id) {
+            const app = appointments.find(a => a.id === id);
+            if (!app) return;
+
+            const code = generateVerificationCode(app.fullName, app.phone);
+            alert(`Rezervasyon Detayları:\n\nDoğrulama Kodu: ${code}\nİsim: ${app.fullName}\nE-posta: ${app.email}\nTelefon: ${app.phone}\nTarih: ${app.date}\nSaat: ${app.time}\nKişi Sayısı: ${app.guests}\nNotlar: ${app.notes || '-'}\n\nOluşturulma: ${new Date(app.createdAt).toLocaleString('tr-TR')}`);
+        }
+
+        function adminDeleteReservation(id) {
+            if (!confirm('Bu rezervasyonu silmek istediğinize emin misiniz?')) return;
+
+            const index = appointments.findIndex(a => a.id === id);
+            if (index > -1) {
+                appointments.splice(index, 1);
+                saveAppointments();
+                updateAdminStats();
+                renderAdminTable();
+                renderAppointments();
+                showToast('🗑️ Rezervasyon silindi.', 'info');
+            }
+        }
+
+        function clearAllReservations() {
+            if (!confirm('TÜM rezervasyonları silmek istediğinize emin misiniz? Bu işlem geri alınamaz!')) return;
+            if (!confirm('Son uyarı: Tüm veriler silinecek. Emin misiniz?')) return;
+
+            appointments = [];
+            saveAppointments();
+            updateAdminStats();
+            renderAdminTable();
+            renderAppointments();
+            showToast('🗑️ Tüm rezervasyonlar silindi.', 'info');
+        }
+
+        // Close modals on backdrop click
+        document.getElementById('adminModal')?.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('adminModal')) closeAdminPanel();
+        });
+
+        document.getElementById('verificationModal')?.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('verificationModal')) closeVerificationModal();
+        });
+
+        // Make functions global
+        window.openAdminPanel = openAdminPanel;
+        window.closeAdminPanel = closeAdminPanel;
+        window.loginAdmin = loginAdmin;
+        window.filterReservations = filterReservations;
+        window.showReservationDetails = showReservationDetails;
+        window.adminDeleteReservation = adminDeleteReservation;
+        window.clearAllReservations = clearAllReservations;
+        window.verifyReservation = verifyReservation;
+        window.closeVerificationModal = closeVerificationModal;
+        window.openVerificationModal = openVerificationModal;
+    </script>
+</body>
+
+</html>
