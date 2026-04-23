@@ -492,8 +492,21 @@
         }
 
         @media (max-width: 768px) {
+            .nav-inner {
+                justify-content: center;
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
             .hamburger {
                 display: flex;
+                position: absolute;
+                right: 0;
             }
 
             .nav-links {
