@@ -493,20 +493,21 @@
 
         @media (max-width: 768px) {
             .nav-inner {
-                justify-content: center;
-                position: relative;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-2);
             }
 
             .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
+                order: 1;
             }
 
             .hamburger {
                 display: flex;
                 position: absolute;
-                right: 0;
+                right: var(--space-4);
+                top: 50%;
+                transform: translateY(-50%);
             }
 
             .nav-links {
